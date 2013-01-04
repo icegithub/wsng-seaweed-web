@@ -29,14 +29,19 @@ app.configure(function(){
     app.use(express.methodOverride());
     app.use(express.bodyParser());
     app.use(app.router);
+    // app.use(express.static(__dirname + '/public'));
+    app.use(express.static('./public'));
     app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
+    // app.use(function(req, res, next){
+    // 	res.send(404, 'Sorry cant find that!');
+    // });
 })
 //同时支持html的设置
 // app.register('html', require('ejs')); 
 
 // 定义开发环境
 app.configure('development', function(){
-    app.use(express.static(__dirname + '/public'));
+    // app.use(express.static(__dirname + '/public'));
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
