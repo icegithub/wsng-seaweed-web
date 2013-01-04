@@ -1,1 +1,2 @@
-alert("Hello, icecream");
+// alert("Hello, icecream");
+console.log("Welcome here");
