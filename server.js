@@ -32,7 +32,7 @@ app.configure(function(){
     app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 })
 //同时支持html的设置
-app.register('html', require('ejs')); 
+// app.register('html', require('ejs')); 
 
 // 定义开发环境
 app.configure('development', function(){
