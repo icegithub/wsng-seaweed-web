@@ -10,11 +10,12 @@
 
 var fs = require('fs')
     , express = require('express')
+    , app = express()
+    , http = require('http')
     , path = require('path')
     , config = require('./config')
     , route = require('./route/index')
     , controller = require('./controller/index')
-    , app = express.createServer()
     ;
 
 // 定义共享环境
@@ -29,15 +30,15 @@ app.configure(function(){
     app.use(express.methodOverride());
     app.use(express.bodyParser());
     app.use(app.router);
-    // app.use(express.static(__dirname + '/public'));
-    app.use(express.static('./public'));
+    app.use(express.static(__dirname + '/public'));
+    // app.use(express.static('./public'));
     app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
     // app.use(function(req, res, next){
     // 	res.send(404, 'Sorry cant find that!');
     // });
 })
 //同时支持html的设置
-// app.register('html', require('ejs')); 
+app.register('html', require('ejs')); 
 
 // 定义开发环境
 app.configure('development', function(){
@@ -80,6 +81,7 @@ app.on('close', function(errno) {
 
 var PORT = process.env['app_port'] || 21018;
 
-app.listen( PORT , function(){
-    console.log(':: nodester :: \n\nApp listening on port %s', this.address().port)
+// app.listen( PORT , function(){
+http.createServer(app).listen( PORT, function(){
+    console.log(':: nodester :: \n\nApp listening on port %s', this.address().port);
 });

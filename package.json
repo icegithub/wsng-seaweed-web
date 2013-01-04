@@ -2,7 +2,7 @@
   "author": "creamidea",
   "name": "icecream",
   "description": "Default app for nodester",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "homepage": "http://icecream.nodester.com",
   "node": "0.8.1",
@@ -11,7 +11,7 @@
   },
   "main": "server.js",
   "dependencies": {
-    "express": "~2.5.9"
+    "express": "~3.0.4"
   },
   "devDependencies": {},
   "optionalDependencies": {},
