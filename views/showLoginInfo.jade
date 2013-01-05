@@ -1,0 +1,9 @@
+block loginInfo
+   var user = #{user};
+   console.log("[in show login info]", user);
+   - for(var i in user) { 
+        tr
+          - for(var j in user[i]) {
+            td user[i][j];
+          - }
+   - }

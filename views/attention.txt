@@ -1,0 +1,1 @@
+http://hectorcorrea.com/blog/using-layouts-with-ejs-in-express-3-x
