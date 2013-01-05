@@ -27,7 +27,7 @@ var login = {
 	var clientip = req.socket.remoteAddress;
 	var xffip  = req.header('X-Forwarded-For');
 	var userip = xffip ? xffip : clientip;
-	console.log("[in controller]", userip);
+	//console.log("[in controller]", userip);
 	if(!userip)
 	    userip = "unkonow";
 	db.login.record(userip, function(err) {

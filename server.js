@@ -15,7 +15,7 @@ var fs = require('fs')
     , http = require('http')
     , path = require('path')
     , redis = require('redis')	// 和redis连接
-    , db = redis.createClient()
+    // , db = redis.createClient()
     , config = require('./config')
     , route = require('./route/index')
     , controller = require('./controller/index')
@@ -36,21 +36,21 @@ app.configure(function(){
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
     // 接下来是纪录用户在线的中间件。 这里我们使用sorted sets, 它的一个好处是我们可以查询最近N毫秒内在线的用户。 我们通过传入一个时间戳来当作成员的"score"。 注意我们使用 User-Agent 作为一个标识用户的id
-    app.use(function(req, res, next){
-	var ua = req.headers['user-agent'];
-	console.log("ua:", ua);
-	db.zadd('online', Date.now(), ua, next);
-    });
+    // app.use(function(req, res, next){
+    // 	var ua = req.headers['user-agent'];
+    // 	console.log("ua:", ua);
+    // 	db.zadd('online', Date.now(), ua, next);
+    // });
     // 下一个中间件是通过zrevrangebyscore来查询上一分钟在线用户。 我们将能得到从当前时间算起在60,000毫秒内活跃的用户。
-    app.use(function(req, res, next){
-	var min = 60 * 1000;
-	var ago = Date.now() - min;
-	db.zrevrangebyscore('online', '+inf', ago, function(err, users){
-	    if(err) return next(err);
-	    req.online = users;
-	    next();
-	});
-    });
+    // app.use(function(req, res, next){
+    // 	var min = 60 * 1000;
+    // 	var ago = Date.now() - min;
+    // 	db.zrevrangebyscore('online', '+inf', ago, function(err, users){
+    // 	    if(err) return next(err);
+    // 	    req.online = users;
+    // 	    next();
+    // 	});
+    // });
     app.use(function(req, res, next){
     	res.send(404, '::Sorry cant find that!::');
     });

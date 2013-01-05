@@ -36,11 +36,11 @@ var Login = mongoose.model('login_info');
 var login = {
     record: function(userIp,callback) {
 	if(userIp) {
-	    console.log("[in utility]", userIp);
+	    //console.log("[in utility]", userIp);
 	    var newLogin = new Login();
 	    newLogin.userIp = userIp;
 	    newLogin.loginTime = new Date();
-	    console.log(new Date());
+	    //console.log(new Date());
 	    newLogin.save(function(err){
 		if(err){
 		    util.log("FATAL"+err);
