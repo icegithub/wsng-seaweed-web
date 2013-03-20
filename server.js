@@ -9,17 +9,18 @@
 "use strict";
 
 var fs = require('fs')
-    , express = require('express')
-    , engines = require('consolidate')
-    , app = express()
-    , http = require('http')
-    , path = require('path')
-    , redis = require('redis')	// 和redis连接
-    // , db = redis.createClient()
-    , config = require('./config')
-    , route = require('./route/index')
-    , controller = require('./controller/index')
-    ;
+, express = require('express')
+, engines = require('consolidate')
+, app = express()
+, http = require('http')
+, path = require('path')
+, redis = require('redis')	// 和redis连接
+// , db = redis.createClient()
+, config = require('./config')
+, route = require('./route/index')
+, mysql = route
+, controller = require('./controller/index')
+;
 
 // 定义共享环境
 app.configure(function(){
@@ -52,7 +53,8 @@ app.configure(function(){
     // 	});
     // });
     app.use(function(req, res, next){
-    	res.send(404, '::Sorry cant find that!::');
+    	// res.send(404, '::Sorry cant find that!::');
+		res.render('404');
     });
 })
 //同时支持html的设置
@@ -75,18 +77,34 @@ app.configure('development', function(){
 //     fs.createReadStream(__dirname + '/index.html').pipe(res);
 // });
 
+
+///////////////////////////////////////////////////////////////////
+// Route
+///////////////////////////////////////////////////////////////////
 app.get('/', route.index);
 app.get('/index', route.index);
 app.get('/index.html', route.index);
 app.get('/index.htm', route.index);
+app.get('/queryTodayCapture', route.queryTodayCapture);
+app.post('/login', route.login);
 // app.get('/cat', function(req, res, next) {
 //     res.send(req.online.length + ' users online');
 // });
+app.get('/showip', route.showIP);
 app.get('/cat', route.cat);
+app.get('/createQR', route.createQR);
+app.get('/todo', route.todo);
+app.get('/classfee', route.classfee);
+app.get('/tableShow', route.tableShow);
 app.get('/version', function(req,res, next){
     res.writeHeader(200, {'Content-type':'application/json'});
     res.end('{"version":"'+ process.version +'"}');
 })
+
+app.get('/download', route.download);
+app.post('/query', route.query);
+//////////////////////////////////////////////////////////////////
+//monogoDB
 // app.get('/connect', controller.connect);  
 
 // app.get('*', function(req,res){
@@ -94,14 +112,23 @@ app.get('/version', function(req,res, next){
 //     res.end(':: not found ::');
 // });
 
-// 服务其关闭是关闭数据库链接
-app.on('close', function(errno) {
-    controller.disconnect(function(err) {
-	if(err)
-	    console.log(err);
-	else
-	    console.log("Disconnect the icecream-nodester");
-    });
+// 服务关闭shi关闭数据库链接
+// app.on('close', function(errno) {
+//     controller.disconnect(function(err) {
+// 	if(err)
+// 	    console.log(err);
+// 	else
+// 	    console.log("Disconnect the icecream-nodester");
+//     });
+// });
+
+//////////////////////////////////////////////////////////////
+// Mysql DB
+//////////////////////////////////////////////////////////////
+mysql.connect(function(err) {})
+mysql.handleDisconnect();
+app.on('close', function(err) {
+    mysql.disconnect(function(err) {});
 });
 
 var PORT = process.env['app_port'] || 3000;
@@ -110,6 +137,10 @@ var PORT = process.env['app_port'] || 3000;
 // app.listen( PORT , function(){
 http.createServer(app).listen( PORT, function(){
     // 程序启动之后链接数据库
-    controller.connect();
+    console.log("Connect the icecream-nodester...");
+
+	//暂时用不到这个数据库了
+    // controller.connect();
+
     console.log(':: nodester :: \n\nApp listening on port %s', this.address().port);
 });

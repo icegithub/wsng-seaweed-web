@@ -1,3 +1,32 @@
+a.thumbnail:hover {
+	cursor: pointer;
+}
+.displayArea {
+    background-color: #dceaf4;
+    margin: 0 auto;
+}
+.queryArea {
+    background-color: #dceaf4;
+    margin: 0 auto;
+}
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    margin-top: 20px;
+    margin-bottom: -90px;
+}
+/* doc.css
+------------------------------------------------- */
+/* .pagination-centered { */
+/* text-align: center; */
+/* } */
+/* .pagination { */
+/* margin: 20px 0; */
+/* } */
+
 /* Footer
 -------------------------------------------------- */
 

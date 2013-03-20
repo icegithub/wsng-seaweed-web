@@ -1,0 +1,36 @@
+extend layout
+
+block content
+  h1 Create QR By Google Charts Tool
+  img#chart_qr(width=256, height=256)
+  hr
+  label(for="text-input") Exit Text:
+  input#text-input(type="text", size="48", style="font-size:18px")
+  input#submit(type="button", value="Create Barcode!")
+  script
+    $(function() {
+      $('#submit').click(function() {
+        var text = $('#text-input').val();
+        var URL = "https://chart.googleapis.com/chart?" +
+                  "chs=256x256&" +                 // Size.
+                  "cht=qr&" +                      // Chart type.
+                  "chl=" + escape(text) + '&' +    // The text.
+                  "choe=UTF-8&";                   // Encoding.
+        $('#chart_qr').attr('src', URL);
+      });
+      $('#text-input').keydown(function(e) {
+        console.log(e.which);
+        // if (e.target.nodeName.toUpperCase() != 'BODY') return;
+        if (e.which == 13) {
+          var text = $('#text-input').val();
+          var URL = "https://chart.googleapis.com/chart?" +
+                    "chs=256x256&" +                 // Size.
+                    "cht=qr&" +                      // Chart type.
+                    "chl=" + escape(text) + '&' +    // The text.
+                    "choe=UTF-8&";                   // Encoding.
+          $('#chart_qr').attr('src', URL);
+        }
+      });
+    });
+
+// <script src='//talkgadget.google.com/talkgadget/button'></script>

@@ -6,10 +6,13 @@
 
 /*jshint node:true, noempty:true, laxcomma:true, laxbreak:false */
 
+//Controller
 "use strict";
 
-var config = require('../config');
-var db = require('../utility/mongodb');
+var config = require('../config')
+  , db = require('../utility/mongodb')
+  , mysql = require('../utility/mysqlDB');
+
 
 exports.connect = function(req, res, next) {
     db.connect();
@@ -23,7 +26,31 @@ exports.disconnect = function(req, res, next) {
 };
 
 var login = {
-    record: function(req, res, next) {
+    check: function(req, res, next) {
+	// console.log("Here is check login");
+	// console.log(req.body);
+	var email = req.body.email
+	  , password = req.body.password;
+	// res.render("manage.jade");
+	// if(email && password) {
+	//     mysql.loginCheck(email, password, function(err, data) {
+	// 	console.log("password", password);
+	// 	console.log("data", data[0].password);
+	// 	if(err) {
+	// 	    res.render("error.jade");
+	// 	} else {
+	// 	    if(data[0].password == password) {
+	// 		res.render("manage.jade");
+	// 	    } else {
+	// 		res.render("error", {title: "Login Error", err: err});
+	// 	    }
+	// 	}
+	//     });
+	// } else {
+	    
+	// }
+    }
+    , record: function(req, res, next) {
 	var clientip = req.socket.remoteAddress;
 	var xffip  = req.header('X-Forwarded-For');
 	var userip = xffip ? xffip : clientip;
@@ -34,11 +61,11 @@ var login = {
 	    if(err) {
 		res.send(err);
 	    } else {
-		res.render('index');
+		res.render('showIP');
 	    }
 	});
-    },
-    findAll: function(req, res, next) {
+    }
+    , findAll: function(req, res, next) {
 	db.login.findAll(function(err, docs) {
 	    if(err)
 		res.send(err);

@@ -1,0 +1,8 @@
+<script type="text/template" id="item-template">
+  <td><%= eid %></td>
+  <td class="username"><div class="display"><%= username %></div><div class="edit"><input class="username" name="username"></input></div></td>
+  <td class="sex"><div class="display"><%= sex=="1" ? "woman":"man" %></div><div class="edit"><select name="sex" class="sex" style="width:45px"><option value="0">man</option><option value="1">woman</option></select></div></td>
+  <td class="age"><div class="display"><%= age %></div><div class="edit"><input class="age" name="age"></input></div></td>
+  <td class="position"><div class="display"><%= position %></div><div class="edit"><input class="position" name="position"></input></div></td>
+  <td><a href="#" class="del">delete</a></td>
+</script>

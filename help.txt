@@ -1,0 +1,20 @@
+== MongoDB ==
+导入CSV数据
+我们先将表user 删除掉，以便演示效果
+> db.user.drop();
+true
+> show collections;
+system.indexes
+>
+然后导入数据
+[root@localhost bin]# ./mongoimport -d my_mongodb -c user --type csv --headerline --file
+user_csv.dat
+connected to: 127.0.0.1
+imported 3 objects
+[root@localhost bin]#
+参数说明:
+ -type 指明要导入的文件格式
+ -headerline 批明不导入第一行，因为第一行是列名
+ -file 指明要导入的文件路径
+注意:
+CSV 格式良好，主流数据库都支持导出为CSV 的格式，所以这种格式非常利于异构数据迁移

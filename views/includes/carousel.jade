@@ -1,0 +1,34 @@
+// .navbar-wrapperx
+//   .container
+//     .navbar.navbar-inverse
+//       .navbar-inner
+//         a.brand(href="#") Display && Monitor System
+//         // .button(type="button", data-toggle="collapse", data-target=".nav-collapse")
+
+// My Carousel
+#myCarousel.carousel.slide
+   // .page-header
+   //   h1 { The plant in sea Monitor System }
+   ol.carousel-indicators
+     li(data-target="#myCarousel", data-slide-to="0").active
+     li(data-target="#myCarousel", data-slide-to="1")
+     li(data-target="#myCarousel", data-slide-to="2")
+     // Carousel items
+   .carousel-inner
+     .active.item
+       img(src="/images/slide-01.jpg", alt)
+       .container
+         .carousel-caption
+           h1#title 海洋生态监控系统
+     .item
+       img(src="/images/slide-02.jpg", alt)
+       .container
+         .carousel-caption
+           h1#title 海洋生态监控系统
+     .item
+       img(src="/images/slide-03.jpg", alt)
+       .container
+         .carousel-caption
+           h1#title 海洋生态监控系统
+   a.carousel-control.left(href="#myCarousel", data-slide="prev") &lsaquo;
+   a.carousel-control.right(href="#myCarousel", data-slide="next") &rsaquo;

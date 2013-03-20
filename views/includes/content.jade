@@ -1,0 +1,46 @@
+// Navigate
+.container
+  div.marketing
+    div#navigate.row-fluid
+      ul.thumbnails(style="text-align: center")
+        li.span4
+          h4
+            a.thumbnail(href="#displayArea", data-slide-to="0")
+              i.icon-leaf 
+              当日实时数据
+        li.span4
+          h4
+            a.thumbnail(href="#displayArea", data-slide-to="1")
+              i.icon-calendar
+              历史数据
+        li.span4
+          h4
+            a.thumbnail(href="#displayArea", data-slide-to="2")
+              i.icon-wrench
+              节点控制
+
+//Display Area
+.container
+  #displayArea.carousel.slide
+   // Carousel items
+   .carousel-inner
+     .active.item#realTime
+       include realTime
+     .item#history
+       include history
+     .item#control
+       include control
+script
+  $('#displayArea').carousel({
+    interval: 9999999999999999
+  });
+  
+  var long;
+  $('a[href=#displayArea]').click(function(){
+    if(!long)
+      long = $(this).context.offsetTop - 16;
+    // console.log(long);
+    $('html, body').animate({scrollTop: long}, 'slow');
+    // return false; //阻止后续click 
+  });
+

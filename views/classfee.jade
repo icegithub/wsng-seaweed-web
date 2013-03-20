@@ -1,0 +1,47 @@
+extend layout
+
+block content
+
+    .container
+        h1 常熟理工学院网络工程101 班费使用情况报告
+        :markdown
+            This page is to show the ** fee of Class 1 **
+        #app(style="width: 650px; margin: 0; auto;")
+          p#emp-form
+            label(for="username") Name:
+            input#username.username(name="username")
+            label(for="sex") Sex:
+            select#sex.sex(name="sex")
+              option(value="0") Man
+              option(value="1") Woman
+            label(for="age") Age:
+            input#age.age(name="age")
+            label(for="position") Position:
+            input#position.position(name="position")
+            button#add-btn Add
+          table.emp-table.table.table-hover
+            thread
+              tr
+                th ID
+                th Name
+                th Sex
+                th Age
+                th Title
+                th Operation
+            tbody          
+        include includes/template.html
+block script
+     // script(src="/javascript/live.js")
+
+        .pagination.pagination-centered
+            ul
+                li 
+                    a(href='#') <<
+                li 
+                    a(href='1') 1
+                li 
+                    a(href='2') 2
+                li 
+                    a(href='3') 3
+                li 
+                    a(href='#') >>

@@ -1,0 +1,156 @@
+section#history
+  .page-header
+    h1 
+      i.icon-calendar
+      历史数据
+      // .alert.alert-info
+  .container.hide#historyAlert
+      .alert.alert-error
+        strong 
+  .queryArea
+    div.form-inline(style="text-align:center")
+      label 节点号:
+      select#sltNodeId(style="width: 100px")
+        // each item, i in items //item是键值，i是索引
+        each node in nodes
+          option(value='#{node.node_id}', senseCode='#{node.sense_type}') #{node.node_id}
+      label 传感器:
+      select#sltSenseType
+      label 起始时间:
+        input#startTime
+      label 终止时间:
+        input#endTime
+      button.btn.btn-primary#query 查询
+      button.btn.btn-success#download 
+        a(href="/download", style="color: white") 下载至今所有数据
+  .displayArea#drawQueryArea
+// scirpt(src="/javascript/bootstrap-datepicker.js")
+// link(href="/css/datepicker.css", rel="stylesheet");
+// This is form helper
+script
+  // =============================Initialize===========================
+  var $sltNodeId = $('#sltNodeId')
+    , $sltSenseType = $('#sltSenseType')
+    , sltNodeId = $sltNodeId.children()[0].value //获得初始nodeId
+    , sltSenseType = null                        //在34行被赋值
+    , nodeOptions = {}              //用于存放option
+    ;  
+  // console.log(sltNodeId);
+  // =============================Node ID Option===========================
+  //控制传感器选项
+  $sltNodeId.children().each(function(index, eltment) {
+     var elt = $(eltment)
+       , senseCode = elt.attr('senseCode')
+       , senses = codeToString(senseCode)
+       , nodeId = elt.attr('value')
+       , options = ""
+       ;
+     if(!sltSenseType) sltSenseType = senses[0]; //获取初始传感器
+     for(var i in senses) {
+       var cnName = enNameToCnName(senses[i]);
+       // if(nodeId === sltNodeId) {
+       //   var option = '<option nodeId='+nodeId+' value='+senses[i]+'>'+cnName+'</option>'
+       // } else {
+       //   var option = '<option class="hide" nodeId='+nodeId+' value='+senses[i]+'>'+cnName+'</option>'
+       // }
+       // $sltSenseType.append(option);
+       options += '<option nodeId='+nodeId+' value='+senses[i]+'>'+cnName+'</option>';
+     }
+     nodeOptions[nodeId] = options;
+     // console.log(nodeOptions);
+  }).end().change(function() {
+    sltNodeId = $(this).val();
+    $sltSenseType.children().each(function(index, element) {
+      var elt = $(element);
+      var nodeId = elt.attr("nodeId");
+      $sltSenseType.children().remove(); //将所有子节点去掉，下面再添加
+    });
+    $sltSenseType.append(nodeOptions[sltNodeId]);
+    sltSenseType = $sltSenseType.children()[0].value //获得初始nodeId
+  });
+  // =============================Sense Type Option===========================
+  $sltSenseType.append(nodeOptions[sltNodeId]);
+  $sltSenseType.change(function() {
+    sltSenseType = $(this).val();
+    // alert(senseType);
+  });
+  
+  // =============================Datepicker Option===========================
+  
+  var datepickerOpt = {
+    dateFormat: "yy-mm-dd",
+    maxDate: new Date()
+  };
+  $("#startTime").datepicker(datepickerOpt);
+  // datepickerOpt.minDate = $(".startTime").val();
+  $("#endTime").datepicker({
+    dateFormat: "yy-mm-dd",
+    minDate: new Date($(".startTime").val()),
+    maxDate: new Date()
+  });
+
+  // =============================Button Option===========================
+  var btnDataHandler = function(url) {
+    // alert(sltNodeId + sltSenseType);
+    if(url) {
+      var startTime = $("#startTime").val()
+        , endTime = $("#endTime").val()
+        , $historyAlert = $('#historyAlert')
+        ;
+      if(!startTime) {
+        $historyAlert.children().children().html("起始时间不能为空");
+        $historyAlert.fadeIn();
+      } else if(!endTime) {
+        $historyAlert.children().children().html("终止时间不能为空");
+        $historyAlert.fadeIn();
+      } else if(endTime < startTime) { 
+        $historyAlert.children().children().html("起始时间必须大于终止时间");
+        $historyAlert.fadeIn();
+      } else {                    //条件全部满足
+        $historyAlert.addClass('hide');
+        var data = {
+          "nodeId": sltNodeId
+          , "senseType": sltSenseType
+          , "startTime": startTime
+          , "endTime": endTime
+        }
+        if(url === '/query') {
+          // 发出请求
+          $.ajax({
+            type: "POST"
+            , url: '/query'
+            , async: true
+            , data: data
+          }).success(function(data) {
+            if(data&&data.length>0) {
+              //这里将数据处理，并且存入全局对象network
+              receiveDataHandler(data, "history");
+              $.publish("/draw/query"); //订阅在app.js中
+              // console.log(network);
+            } else {
+              $historyAlert.children().children().html("对不起，所要求查询的时间内没有数据产生,请重新选择查询时间。");
+              $historyAlert.removeClass('hide');
+            } 
+          });
+        }                       //query
+        if(url === '/download') {
+          // 发出请求
+          alert("download");
+          $.ajax({
+            type: "GET"
+            , url: '/download'
+            // , async: true
+            // , data: data
+          });
+        }                       //download
+      }
+    }                           //if url end
+  };
+
+  $('#query').click(function(){
+    btnDataHandler('/query');
+  });
+
+  // $('#download').click(function() {
+  //   btnDataHandler('/download');
+  // })
