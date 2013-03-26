@@ -7,8 +7,11 @@ exports.siteDesc = 'I am here';
 // exports.mongodb = 'mongodb://127.0.0.1:27017/icecream-nodester'
 
 exports.mysqldb = {
-    host     : '10.18.46.17',
-    user     : 'smartwin_test',
-    password : 'smartwin_test',
-    database : 'smartwin_test'
+    host     : '10.18.46.189',
+    // user     : 'smartwin_test',
+    // password : 'smartwin_test',
+    // database : 'smartwin_test'
+    user     : 'smartwin_130319',
+    password : 'smartwin_130319',
+    database : 'smartwin_130319'
 };

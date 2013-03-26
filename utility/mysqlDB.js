@@ -44,7 +44,7 @@ exports.queryBasicInfo = function(tableName, callback) {
     if(tableName) {
 	var cmd = 'select distinct(node_id), sense_type from ' + tableName 
 	    + ' order by node_id';
-	console.log("cmd:", cmd);
+	// console.log("cmd:", cmd);
 	connection.query(cmd, function(err, data) {
 	    callback(err, data);//Search the data to storage into the data
 	});

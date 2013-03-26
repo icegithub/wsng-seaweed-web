@@ -16,7 +16,7 @@ $(document).ready(function() {
     var requestData = generateToday();
     queryTodayCapture(requestData,receiveDataHandler); // receiveDataHandler在helper.js中
 
-	// console.log("network", network.node);
+	console.log("network", network.node);
 	// /////////////////////////////////////////////////////
 	// 这里绘制实时数据,页面加载时就绘制
 	for(var i in network.node) {

@@ -595,7 +595,12 @@ function codeToString (code) {
 		var ret = [];
 		switch (parseInt(code)) {
 		case 1:
-			ret.push("light");
+			// ret.push("light");
+
+			//修改的地方 2013-03-26
+			ret.push("temperature");
+			ret.push("turbidity");
+			ret.push("flowspeed");
 			break;
 		case 12:
 			ret.push("temperature");
