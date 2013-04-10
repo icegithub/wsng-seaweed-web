@@ -8,9 +8,9 @@ html(lang="en")
     meta(name="description", content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com.")
     meta(name="author", content="icecream&&van9ogh&&arnold")
     link(href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic", rel="stylesheet")
-    link(href="css/impress-demo.css", rel="stylesheet")
-    link(href="css/report.css", rel="stylesheet")
-    link(href="css/font-awesome.min.css", rel="stylesheet")
+    link(href="/css/impress-demo.css", rel="stylesheet")
+    link(href="/css/report.css", rel="stylesheet")
+    link(href="/css/font-awesome.min.css", rel="stylesheet")
     link(href="http://fonts.googleapis.com/css?family=Libre+Baskerville|Great+Vibes|Montserrat", rel="stylesheet", type="text/css")
 
   body
@@ -21,7 +21,7 @@ html(lang="en")
       div#title.step.slide(data-x="-1000", data-y="-1500", style="text-align: center;")
         q(style="text-align: center; color: rgb(0, 0, 0);font-weight: bold;font-size: 60px;padding-top: 70px;") 
           基于无线传感器网络<br/>多参数采集与展示系统
-        img(src="images/reports/title.png")
+        img(src="/images/reports/title.png")
         q(style="text-align: center; font-size: 28px;") 
           指导老师：李克清<br/> 负责人：刘鹏<br/> 小组成员：李军前 倪俊佳<br/>
 
@@ -63,7 +63,7 @@ html(lang="en")
       // System Design
       div#SystemDesign.step.slide(data-x="2000", data-y="-1500", style="text-align: center;")
         h1 系统架构
-        img(src="images/reports/SystemDesign.png", style="width: 100%;padding-top: 40px;")
+        img(src="/images/reports/SystemDesign.png", style="width: 100%;padding-top: 40px;")
 
       // Development Environment
       div#DevEnvir.step.slide(data-x="2000", data-y="-2500", data-z="-1000")
@@ -85,7 +85,7 @@ html(lang="en")
         p 5. 支持TinyOS操作系统， 嵌入式C语言NesC
       div#CaptureNode1.step.slide(data-x="2000", data-y="-1500", data-z="-6000")
         h1 采集节点：
-        img(src="images/reports/CaptureNode.png", style="padding-top: 20%")
+        img(src="/images/reports/CaptureNode.png", style="padding-top: 20%")
 
 
       // Collection Node
@@ -93,7 +93,7 @@ html(lang="en")
         h1 汇聚节点： 
         p MIB520和普通节点的组合
         p 采用FDTI串口转USB芯片， 进行串口数据的传输 
-        img(src="images/reports/CollectionNode.png")
+        img(src="/images/reports/CollectionNode.png")
 
         
       // System Design
@@ -113,7 +113,7 @@ html(lang="en")
           5. 尽力传播
       div#Protocol2.step.slide(data-x="3000", data-y="-500", data-z="-1000")
         h1 系统架构： 协议 
-        img(src="images/reports/protocol.png")        
+        img(src="/images/reports/protocol.png")        
       // Capture Server / Capture Client
       div#CaptureServer.step.slide(data-x="3000", data-y="1500", data-z="-2000")
         h1 系统架构： 采集端
@@ -126,7 +126,7 @@ html(lang="en")
           3. 使用CRC冗余校验
       div#CaptureServer1.step.slide(data-x="3000", data-y="500", data-z="-2000")
         h1 系统架构： 采集端
-        img(src="images/reports/CaptureServer.png")
+        img(src="/images/reports/CaptureServer.png")
       // WEB Server 
       div#WebServer.step.slide(data-x="3000", data-y="-1500", data-z="-4000")
         h1 系统架构：WEB服务器端
@@ -138,7 +138,7 @@ html(lang="en")
           3. 支持线程池
       div#WebServer1.step.slide(data-x="3000", data-y="-500", data-z="-4000")
         h1 系统架构：WEB服务器端
-        img(src="images/reports/WEBServer.png")
+        img(src="/images/reports/WEBServer.png")
       // SQL: mySQL 
       div#mySQL.step.slide(data-x="3000", data-y="-1500", data-z="-6000")
         h1 系统架构：数据库端
@@ -146,7 +146,7 @@ html(lang="en")
           1.在对本项目的数据结构、 服务器与数据库交互方式 及后期可能的扩展方向做了 大量分析后，设计了相应的 数据库表结构；
       div#mySQL_pic.step.slide(data-x="3000", data-y="-1500", data-z="-7000")
         h1 系统架构：数据库端
-        img(src="images/reports/mysql.png")
+        img(src="/images/reports/mysql.png")
       div#mySQL2.step.slide(data-x="3000", data-y="-1500", data-z="-10000")
         h1 系统架构：数据库端
         p 
@@ -166,7 +166,7 @@ html(lang="en")
       div#client2.step.slide(data-x="4000", data-y="-1500", data-z="-2000")
         h1 系统架构： 客户端
         h2 客户端整体架构：
-        img(src="images/reports/MVC1.png", style="width: 100%")
+        img(src="/images/reports/MVC1.png", style="width: 100%")
 
       // Overview
       div#Overview.step.slide(data-x="5000", data-y="-1500")
@@ -190,7 +190,7 @@ html(lang="en")
         q(style="font-size: 100px;") END
         q(style="font-size: 100px;") Q&A
 
-    script(src="javascript/impress.js")
+    script(src="/javascript/impress.js")
     script
       impress().init();
 
