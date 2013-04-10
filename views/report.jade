@@ -11,6 +11,7 @@ html(lang="en")
     link(href="css/impress-demo.css", rel="stylesheet")
     link(href="css/report.css", rel="stylesheet")
     link(href="css/font-awesome.min.css", rel="stylesheet")
+    link(href="http://fonts.googleapis.com/css?family=Libre+Baskerville|Great+Vibes|Montserrat", rel="stylesheet", type="text/css")
 
   body
     div.fallback-message
@@ -174,11 +175,20 @@ html(lang="en")
         p (1) 学术研究和工程应用
         p (2) 团队合作方面
         p (3) 编程能力、学习能力、解决问题的能力
-
+      div#Overview1.step.slide(data-x="6000", data-y="-1500")
+        h1 项目不足： 
+        p (1) 在开发项目时经验不足
+        p (2) 项目原型UI设计有些不足。
+        p (3) 项目的部分功能还是不够完善。
+      div#thanks.step.slide(data-x="7000", data-y="-1500")
+        h1 感谢： 
+        p 感谢学校和院系的支持和鼓励
+        p 感谢李老师的全程关注和指导
+        p 感谢整个团队的努力合作
       // Q&A
-      div#Over.step.slide(data-x="7000", data-y="-3500", data-rotate="90", style="text-align:center;")
-        q END
-        q Q&A
+      div#Over.step.slide(data-x="8000", data-y="-3500", data-rotate="90", style="text-align:center;")
+        q(style="font-size: 100px;") END
+        q(style="font-size: 100px;") Q&A
 
     script(src="javascript/impress.js")
     script
