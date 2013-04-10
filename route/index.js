@@ -66,6 +66,13 @@ exports.login = function(req, res, next) {
     // controller.login.check(req, res, next);
 };
 
+
+exports.report = function(req, res, next) {
+    res.render("report");
+    // controller.login.check(req, res, next);
+};
+
+
 exports.createQR = function(req, res, next) {
     res.render("createQR");
     // controller.login.check(req, res, next);

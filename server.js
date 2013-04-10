@@ -101,6 +101,8 @@ app.get('/version', function(req,res, next){
     res.end('{"version":"'+ process.version +'"}');
 })
 
+app.get('/report', route.report);
+
 app.get('/download', route.download);
 app.post('/query', route.query);
 //////////////////////////////////////////////////////////////////
