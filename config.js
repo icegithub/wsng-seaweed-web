@@ -8,7 +8,7 @@ exports.siteVersion = 'v2.0';
 // exports.mongodb = 'mongodb://127.0.0.1:27017/icecream-nodester'
 
 exports.mysqldb = {
-    host     : '10.18.46.189',
+    host     : '10.18.50.20',
     // user     : 'smartwin_test',
     // password : 'smartwin_test',
     // database : 'smartwin_test'
