@@ -11,115 +11,54 @@ section#realTime
     .alert.alert-error
       strong 很抱歉，今天暂时还没接收到数据。无法展示，请稍候。
   .displayArea#rtDisplayArea
-    // p 测试数据2013-02-02
-    each node in nodes
-      section(nodeId='#{node.node_id}', senseCode='#{node.sense_type}')
-        h2 节点号：#{node.node_id}
-    // #container(style="min-width: 400px; height: 400px; margin: 0 auto")
+    each sensors, nodeId in nodes
+      section(nodeId='#{nodeId}', senseCode='#{sensors}')
+        h2 节点号：#{nodeId}
+        // 创建图表绘制区域
+        each sensor in sensors
+          div(id='rt_' + '#{nodeId}' + '_' + '#{sensor}')
+      // #container(style="min-width: 400px; height: 400px; margin: 0 auto")
   #chart_div
 
 // include google_chart.html
-script
-  var browser = navigator.appVersion;
-  var killIE = browser.slice(0,1);
-  // alert(killIE);
-  var $rtDisplayArea = $('#rtDisplayArea');
-  if(killIE > 4) {
-    // $('#noDataAlert').find('strong').html('点击<a href="/tableShow">这里</a>以表格的形式查看所有数据').end().removeClass("hide");
-    // 根据初始化的信息(section中)建立绘制图表的区域
-    $rtDisplayArea.children().each(function(index, element) {
-      var elt = $(element)
-        , senseCode = elt.attr('senseCode')
-        , senses = codeToString(senseCode)
-        , nodeId = elt.attr('nodeId');
-      // console.log(elt);
-      for(var i in senses) {
-        var container = '<div id=rt' + '_' + nodeId + '_' + senses[i] + '/>';  
-        elt.append(container);
-      }
-    });
-  } else {                      //the IE7.0 IE8.0
-    // var elt = document.getElementById('#rtDisplayArea')
-    // console.log($rtDisplayArea.children().length);
-    // $rtDisplayArea.append("This is IE");
-    $('#noDataAlert').find('strong').html('请改用IE9.0+,Chrome或者Firefox等现代浏览器以获得最佳体验。你可以点击<a href="/tableShow">这里</a>以表格的形式查看所有数据').end().removeClass("hide");
-    // $('#noDataAlert').children().children().html("Hello")
-    // .end().removeClass("hide");
-    var length = $rtDisplayArea.find('section').length;
-    // alert(length);
-    $rtDisplayArea.find('h2').remove();    //先清除原先标点
-    $rtDisplayArea.find('section').each(function(index, element) {
-      var elt = $(element)
-        , senseCode = elt.attr('senseCode')
-        , senses = codeToString(senseCode)
-        , nodeId = elt.attr('nodeId');
-      // console.log("senseCode:", senseCode);
-      // alert(nodeId + senseCode + senses);
-      console.log(senses);
-      if(nodeId && senses) {
-        var title = '<h2>节点号：' + nodeId + '</h2>';
-        $rtDisplayArea.append(title);
-        for(var i in senses) {
-          // alert(senses[i]);
-          var container = '<div id=rt' + '_' + nodeId + '_' + senses[i] + '/>';  
-          // alert(container);
-          $rtDisplayArea.append(container);
-        }
-      }
-    });
-  }
-
-  // $(function () {
-  //   var chart;
-  //   $(document).ready(function() {
-  //       chart = new Highcharts.Chart({
-  //           chart: {
-  //               renderTo: 'container',
-  //               type: 'line',
-  //               marginRight: 130,
-  //               marginBottom: 25
-  //           },
-  //           title: {
-  //               text: 'Monthly Average Temperature',
-  //               x: -20 //center
-  //           },
-  //           subtitle: {
-  //               text: 'Source: WorldClimate.com',
-  //               x: -20
-  //           },
-  //           xAxis: {
-  //               categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-  //                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  //           },
-  //           yAxis: {
-  //               title: {
-  //                   text: 'Temperature (°C)'
-  //               },
-  //               plotLines: [{
-  //                   value: 0,
-  //                   width: 1,
-  //                   color: '#808080'
-  //               }]
-  //           },
-  //           tooltip: {
-  //               formatter: function() {
-  //                       return '<b>'+ this.series.name +'</b><br/>'+
-  //                       this.x +': '+ this.y +'°C';
-  //               }
-  //           },
-  //           legend: {
-  //               layout: 'vertical',
-  //               align: 'right',
-  //               verticalAlign: 'top',
-  //               x: -10,
-  //               y: 100,
-  //               borderWidth: 0
-  //           },
-  //           series: [{
-  //               name: 'Tokyo',
-  //               data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-  //           }]
-  //       });
-  //   });
-    
-  // });
+// script
+//   var browser = navigator.appVersion;
+//   var killIE = browser.slice(0,1);
+//   // alert(killIE);
+//   var $rtDisplayArea = $('#rtDisplayArea');
+//   if(killIE > 4) {
+//     // $('#noDataAlert').find('strong').html('点击<a href="/tableShow">这里</a>以表格的形式查看所有数据').end().removeClass("hide");
+//     // 根据初始化的信息(section中)建立绘制图表的区域
+//     $rtDisplayArea.children().each(function(index, element) {
+//       var elt = $(element)
+//         , senseCodes = elt.attr('senseCode').split(',')
+//         // , senses = codeToString(senseCode)
+//         , nodeId = elt.attr('nodeId');
+//       // console.log(senses);
+//       for(var i in senseCodes) {
+//         var container = '<div id=rt' + '_' + nodeId + '_' + codeToString(senseCodes[i])[0] + '/>';  
+//         elt.append(container);
+//       }
+//     });
+//   } else {                      //the IE7.0 IE8.0
+//     // var elt = document.getElementById('#rtDisplayArea')
+//     // console.log($rtDisplayArea.children().length);
+//     // $rtDisplayArea.append("This is IE");
+//     $('#noDataAlert').find('strong').html('请改用IE9.0+,Chrome或者Firefox等现代浏览器以获得最佳体验。你可以点击<a href="/tableShow">这里</a>以表格的形式查看所有数据').end().removeClass("hide");
+//     // $('#noDataAlert').children().children().html("Hello")
+//     // .end().removeClass("hide");
+//     var length = $rtDisplayArea.find('section').length;
+//     // alert(length);
+//     $rtDisplayArea.find('h2').remove();    //先清除原先标点
+//     $rtDisplayArea.find('section').each(function(index, element) {
+//       var elt = $(element)
+//         , senseCodes = elt.attr('senseCode').split(',')
+//         , nodeId = elt.attr('nodeId');
+//         var title = '<h2>节点号：' + nodeId + '</h2>';
+//         $rtDisplayArea.append(title);
+//         for(var i in senseCodes) {
+//           var container = '<div id=rt' + '_' + nodeId + '_' + senseCodes[i] + '/>';  
+//           $rtDisplayArea.append(container);
+//       }
+//     });
+//   }

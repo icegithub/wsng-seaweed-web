@@ -1,32 +1,33 @@
 {
-  "author": "creamidea",
-  "name": "icecream",
-  "description": "This is my javascript lab",
-  "version": "0.0.1",
-  "private": true,
-  "homepage": "http://icecream.nodester.com",
-  "node": "0.8.1",
-  "repository": {
-    "url": "defaultapp"
-  },
-  "main": "server.js",
-  "dependencies": {
-    "express": "~3.0.5",
-    "redis": "*"
-  },
-  "devDependencies": {
-    "mongoose": "3.5.3",
-    "jade": "0.27.7",
-    "ejs": "0.8.3",
-    "consolidate": "0.7.0",
-    "express": "3.0.5",
-    "markdown": "0.4.0"
-  },
-  "optionalDependencies": {},
-  "engines": {
-    "node": "*"
-  },
-  "scripts": {
-    "start": "node server"
-  }
+		"author": "creamidea",
+		"name": "icecream",
+		"description": "This is my javascript lab",
+		"version": "0.0.1",
+		"private": true,
+		"homepage": "http://icecream.nodester.com",
+		"node": "0.8.1",
+		"repository": {
+				"url": "defaultapp"
+		},
+		"main": "server.js",
+		"dependencies": {
+				"express": "~3.0.5",
+				"redis": "*"
+		},
+		"devDependencies": {
+				"mongoose": "3.5.3",
+				"jade": "0.27.7",
+				"ejs": "0.8.3",
+				"consolidate": "0.7.0",
+				"express": "3.0.5",
+				"markdown": "0.4.0",
+				"mysql": "2.0.0-alpha5"
+		},
+		"optionalDependencies": {},
+		"engines": {
+				"node": "*"
+		},
+		"scripts": {
+				"start": "node server"
+		}
 }

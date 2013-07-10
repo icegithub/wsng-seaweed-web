@@ -19,20 +19,20 @@ html(lang="en")
       // Title
       div#title.step.slide(data-x="-1000", data-y="-1500", style="text-align: center;")
         q(style="text-align: center; color: rgb(0, 0, 0);font-weight: bold;font-size: 60px;padding-top: 70px;") 
-          基于TinyOS操作系统的<br/>展示与监控系统
+          基于无线传感器网络<br/>多参数采集与展示系统
         img(src="/images/reports/title.png")
         q(style="text-align: center; font-size: 28px;") 
           指导老师：李克清<br/> 负责人：刘鹏<br/> 小组成员：李军前 倪俊佳<br/>
 
-      // // Project Show Address 
-      // div#show.step.slide(data-x="-1000", data-y="-1500", data-z="-4000", data-rotate="360", style="text-align:center;padding-top: 20%;color: rgb(143, 0, 255)")
-      //   q 项目展示地址
-      //     a(href="http://10.18.46.189") http://10.18.46.189
+      // Project Show Address 
+      div#show.step.slide(data-x="-1000", data-y="-1500", data-z="-4000", data-rotate="360", style="text-align:center;padding-top: 20%;color: rgb(143, 0, 255)")
+        q 项目展示地址
+          a(href="http://10.18.46.189") http://10.18.46.189
 
       // Content
       div#content.step.slide(data-x="0", data-y="-1500")
         ul.one
-          li 1. 项目的研究意义和主要功能
+          li 1. 项目的研究意义
           li 2. 开发环境
             ul.two 
               li 硬件
@@ -40,10 +40,10 @@ html(lang="en")
               li 开发语言
           li 3. 系统架构
             ul.two
-              li 节点采集端
-              li 数据接口
+              li 采集端
+              li WEB服务器端
               li 数据库
-              li 浏览器端
+              li 客户端
           li 4. 项目总结
           li 5. 结束语
 
@@ -51,49 +51,28 @@ html(lang="en")
       div#reason.step.slide(data-x="1000", data-y="-1500")
         h1 是什么和为什么
         p 
-          1. 这是一个无线传感器网络的可视化项目，重点在于如何更直观的展示传感器的数据，为用户提供更加直观的数据
+          1. 这是一个无线传感器网络的可视化项目， 重点在于如何更直观的展示传感器的数据， 为用户提供更加直观的数据。
         p
           2 .嵌入式和移动互联网的结合
         p
-          3. 原型项目
+          3. 原型项目， 有很多扩展面， 可以用来做医疗， 养殖， 环境监测等特定领域的数据采集与分析应用。
         p         
-          4. 从硬件到软件，对了解计算机整个体系结构有莫大的帮助
-
-      div#reason.step.slide(data-x="1000", data-y="-1500", data-z"-1500")
-        h1 
-        p 
-          1. 这是一个无线传感器网络的可视化项目，重点在于如何更直观的展示传感器的数据，为用户提供更加直观的数据
-        p
-          2 .嵌入式和移动互联网的结合
-        p
-          3. 原型项目
-        p         
-          4. 从硬件到软件，对了解计算机整个体系结构有莫大的帮助
-
-      // ===========================================================================
-      // 
-      //   
+          4. 从硬件到软件， 对了解计算机整个体系结构有莫大的帮助。
+  
       // System Design
       div#SystemDesign.step.slide(data-x="2000", data-y="-1500", style="text-align: center;")
         h1 系统架构
         img(src="/images/reports/SystemDesign.png", style="width: 100%;padding-top: 40px;")
 
-      // ===========================================================================
-      // 
-      //   
       // Development Environment
       div#DevEnvir.step.slide(data-x="2000", data-y="-2500", data-z="-1000")
         h1 开发环境
-        h2 硬件：
+        h2 硬件： 
         p  Crossbow Micaz节点、Mib520开发板
         h2 软件： 
-        p  语言： NesC,C,JavaScript,SQL,Python
-        p  操作系统： TinyOS,Linux(>=2.6.0)
+        p  语言： NesC、C、JavaScript、SQL
+        p  操作系统： TinyOS、Linux(>=2.6.0)
         p  工具： GNU Make, GCC, Vim/Emacs
-
-      // ===========================================================================
-      // 
-      //   
       // Capture Node
       div#CaptureNode.step.slide(data-x="2000", data-y="-1500", data-z="-4000")
         h1 采集节点： 
@@ -108,24 +87,18 @@ html(lang="en")
         img(src="/images/reports/CaptureNode.png", style="padding-top: 20%")
 
 
-      // ===========================================================================
-      // 
-      //   
       // Collection Node
       div#CollectionNode.step.slide(data-x="2000", data-y="-1500", data-z="-8000")
-        h1 汇聚节点：
+        h1 汇聚节点： 
         p MIB520和普通节点的组合
         p 采用FDTI串口转USB芯片， 进行串口数据的传输 
         img(src="/images/reports/CollectionNode.png")
 
         
-      // ===========================================================================
-      // 
-      //   
       // System Design
       // Protocol
       div#Protocol.step.slide(data-x="3000", data-y="-1500")
-        h1 系统架构：协议 
+        h1 系统架构： 协议 
         h2 节点部分的路由协议（基于stanford sing的collection tree protocol)
         p 
           1. 汇聚树协议
@@ -138,11 +111,11 @@ html(lang="en")
         p 
           5. 尽力传播
       div#Protocol2.step.slide(data-x="3000", data-y="-500", data-z="-1000")
-        h1 系统架构：协议 
+        h1 系统架构： 协议 
         img(src="/images/reports/protocol.png")        
       // Capture Server / Capture Client
       div#CaptureServer.step.slide(data-x="3000", data-y="1500", data-z="-2000")
-        h1 系统架构：采集端
+        h1 系统架构： 采集端
         h2 服务器/客户端
         p 
           1. 多对一模式
@@ -157,7 +130,7 @@ html(lang="en")
       div#WebServer.step.slide(data-x="3000", data-y="-1500", data-z="-4000")
         h1 系统架构：WEB服务器端
         p 
-          1. 采用Python Django网络框架
+          1. 采用C语言编写
         p 
           2. 支持事件驱动
         p 
@@ -169,7 +142,7 @@ html(lang="en")
       div#mySQL.step.slide(data-x="3000", data-y="-1500", data-z="-6000")
         h1 系统架构：数据库端
         p 
-          1.在对本项目的数据结构、 服务器与数据库交互方式 及后期可能的扩展方向做了 大量分析后，设计了相应的数据库表结构；
+          1.在对本项目的数据结构、 服务器与数据库交互方式 及后期可能的扩展方向做了 大量分析后，设计了相应的 数据库表结构；
       div#mySQL_pic.step.slide(data-x="3000", data-y="-1500", data-z="-7000")
         h1 系统架构：数据库端
         img(src="/images/reports/mysql.png")
@@ -185,11 +158,12 @@ html(lang="en")
           5、为提高容灾减灾能力，系统定期进行热备份
       // Client
       div#client1.step.slide(data-x="4000", data-y="-1500")
-        h1 系统架构：浏览器端
-        p 本项目展示程序采用的是主流网络应用技术开发，构建在浏览器这一泛操作系统之上。
+        h1 系统架构： 客户端
+        p 随着网络的高速发展，网络应用程序如雨后春笋般出现。其便捷性，高效性越来越受到市场的青睐。
+        p 鉴于上述原因，本项目展示程序采用的是主流网络应用技术开发，构建在浏览器这一泛操作系统之上。
         p 总体思路上采用的是MVC程序设计思想。最大限度的保证客户端各个模块的独立性。方便后期的进一步扩展。
       div#client2.step.slide(data-x="4000", data-y="-1500", data-z="-2000")
-        h1 系统架构：浏览器端
+        h1 系统架构： 客户端
         h2 客户端整体架构：
         img(src="/images/reports/mvc1.png", style="width: 100%")
 

@@ -35,7 +35,7 @@ app.configure(function(){
     app.use(express.bodyParser());
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
-    app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
+    app.use(express.favicon(__dirname + '/public/images/cslg.png'));
     // 接下来是纪录用户在线的中间件。 这里我们使用sorted sets, 它的一个好处是我们可以查询最近N毫秒内在线的用户。 我们通过传入一个时间戳来当作成员的"score"。 注意我们使用 User-Agent 作为一个标识用户的id
     // app.use(function(req, res, next){
     // 	var ua = req.headers['user-agent'];
@@ -53,8 +53,8 @@ app.configure(function(){
     // 	});
     // });
     app.use(function(req, res, next){
-    	// res.send(404, '::Sorry cant find that!::');
-		res.render('404');
+    		// res.send(404, '::Sorry cant find that!::');
+				res.render('404');
     });
 })
 //同时支持html的设置
@@ -85,6 +85,7 @@ app.get('/', route.index);
 app.get('/index', route.index);
 app.get('/index.html', route.index);
 app.get('/index.htm', route.index);
+app.get('/queryRealTime', route.queryRealTime);
 app.get('/queryTodayCapture', route.queryTodayCapture);
 app.post('/login', route.login);
 // app.get('/cat', function(req, res, next) {
@@ -99,7 +100,7 @@ app.get('/tableShow', route.tableShow);
 app.get('/version', function(req,res, next){
     res.writeHeader(200, {'Content-type':'application/json'});
     res.end('{"version":"'+ process.version +'"}');
-})
+});
 
 app.get('/report', route.report);
 
@@ -128,21 +129,23 @@ app.post('/query', route.query);
 // Mysql DB
 //////////////////////////////////////////////////////////////
 mysql.connect(function(err) {})
+
 mysql.handleDisconnect();
 app.on('close', function(err) {
     mysql.disconnect(function(err) {});
 });
 
-var PORT = process.env['app_port'] || 3000;
+var PORT = process.argv[2] || 3000;
 // var PORT = process.env['app_port'] || 21018;
 
 // app.listen( PORT , function(){
 http.createServer(app).listen( PORT, function(){
     // 程序启动之后链接数据库
-    console.log("Connect the icecream-nodester...");
+    // console.log("Connect the icecream-nodester...");
 
-	//暂时用不到这个数据库了
+		//暂时用不到这个数据库了
     // controller.connect();
 
-    console.log(':: nodester :: \n\nApp listening on port %s', this.address().port);
+    console.log(':: nodester :: \n\nApp listening on port %s', PORT);
+    // console.log(':: nodester :: \n\nApp listening on port %s', this.address().port);
 });
